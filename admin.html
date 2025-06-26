@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard - Wisal Files</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+    <body>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="site-title">🛠 Admin Dashboard</div>
+                <ul class="nav">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li id="dashboardLink"><a href="admin.html" class="nav-link active">Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <h1>Welcome, Admin</h1>
+            <p>Here you can manage files, add new ones, and view stats.</p>
+
+            <button onclick="logoutAdmin()" style="float: right;">🚪 Logout</button>
+
+            <!-- Upload section -->
+            <section class="grade-box">
+            <h2>📤 Upload New File</h2>
+            <form id="uploadForm">
+                <input type="file" id="fileInput" required />
+                <select id="subjectSelect">
+                <option value="english">English</option>
+                <option value="math">Math</option>
+                </select>
+                <select id="gradeSelect">
+                <option value="grade7">Grade 7</option>
+                <option value="grade8">Grade 8</option>
+                <option value="grade9">Grade 9</option>
+                <option value="grade10">Grade 10</option>
+                <option value="grade11">Grade 11</option>
+                </select>
+                <button type="submit">Upload File</button>
+                <p id="status"></p>
+            </form>
+            </section>
+
+            <section class="grade-box">
+                <h2>📁 File Overview</h2>
+                <table class="admin-table">
+                    <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Subject</th>
+                        <th>Grade</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Grade 7 - Lesson 1</td>
+                        <td>English</td>
+                        <td>Grade 7</td>
+                        <td>
+                        <a href="files/english/grade7/lesson1.pdf" target="_blank">👁 View</a>
+                        <a href="files/english/grade7/lesson1.pdf" download>📥 Download</a>
+                        <button disabled>❌ Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grade 10 - Worksheet 1</td>
+                        <td>Math</td>
+                        <td>Grade 10</td>
+                        <td>
+                        <a href="files/math/grade10/worksheet1.pdf" target="_blank">👁 View</a>
+                        <a href="files/math/grade10/worksheet1.pdf" download>📥 Download</a>
+                        <button disabled>❌ Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- File management section (coming soon) -->
+            <section class="grade-box">
+            <h2>🗂️ Manage Uploaded Files</h2>
+            <p>Coming soon: list, delete, or rename files.</p>
+            </section>
+        </main>
+
+        <script>
+            const password = "wisal2025"; // 🛑 Change this to your actual password
+
+            if (localStorage.getItem("admin_logged_in") !== "true") {
+                const userInput = prompt("🔐 Enter Admin Password:");
+
+                if (userInput !== password) {
+                alert("❌ Incorrect password. Redirecting to Home...");
+                window.location.href = "index.html";
+                } else {
+                localStorage.setItem("admin_logged_in", "true");
+                }
+            }
+        </script>
+
+        <script>
+            function logoutAdmin() {
+                localStorage.removeItem("admin_logged_in");
+                window.location.reload();
+            }
+        </script>
+
+
+    </body>
+</html>

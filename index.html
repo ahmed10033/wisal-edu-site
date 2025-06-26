@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wisal Educational Files</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="site-title">📚 Ms. Files</div>
+        <ul class="nav">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="subjects/english.html" class="nav-link">English</a></li>
+            <li><a href="subjects/math.html" class="nav-link">Math</a></li>
+        </ul>
+        <!--themes-->
+        <!--
+        <div class="theme-toggle">
+            <span id="themeLabel">Light</span>
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        --> 
+    </div>
+</nav>
+
+<!-- Header -->
+<header>
+    <h1>Ms. Educational Files</h1>
+    <p>📂 Access Study Materials for Middle & High School Students</p>
+</header>
+
+<main>
+    <!-- Filters -->
+    <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for a file..." />
+    <select id="subjectFilter">
+        <option value="">All Subjects</option>
+        <option value="english">English</option>
+        <option value="math">Math</option>
+    </select>
+    <select id="gradeFilter">
+        <option value="">All Grades</option>
+        <option value="grade7">Grade 7</option>
+        <option value="grade8">Grade 8</option>
+        <option value="grade9">Grade 9</option>
+        <option value="grade10">Grade 10</option>
+        <option value="grade11">Grade 11</option>
+    </select>
+    </div>
+
+    <!-- Subject: English -->
+    <section class="subject">
+    <h2>
+        <img src="images/english.png" alt="English Icon" class="icon">
+        English
+    </h2>
+    <div class="grade-box">
+        <ul id="english-files">
+        <li class="file-card english grade7">
+            <a href="files/english/grade7/lesson1.pdf" target="_blank">Grade 7 - Lesson 1</a>
+            <a href="files/english/grade7/lesson1.pdf" download class="download-btn">📥 Download</a>
+        </li>
+        <li class="file-card english grade8">
+            <a href="files/english/grade8/worksheet1.pdf" target="_blank">Grade 8 - Worksheet 1</a>
+            <a href="files/english/grade8/worksheet1.pdf" download class="download-btn">📥 Download</a>
+        </li>
+        <li class="file-card english grade9">
+            <a href="files/english/grade9/lesson1.pdf" target="_blank">Grade 9 - Lesson 1</a>
+            <a href="files/english/grade9/lesson1.pdf" download class="download-btn">📥 Download</a>
+        </li>
+        <li class="file-card english grade10">
+            <a href="files/english/grade10/worksheet1.pdf" target="_blank">Grade 10 - Worksheet 1</a>
+            <a href="files/english/grade10/worksheet1.pdf" download class="download-btn">📥 Download</a>
+        </li>
+        <li class="file-card english grade11">
+            <a href="files/english/grade11/lesson1.pdf" target="_blank">Grade 11 - Lesson 1</a>
+            <a href="files/english/grade11/lesson1.pdf" download class="download-btn">📥 Download</a>
+        </li>
+        </ul>
+        <p><a href="subjects/english.html">→ View all English Grades</a></p>
+    </div>
+    </section>
+
+    <!-- Add Math section here if needed -->
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+    <p>© 2025 Wisal Educational Files</p>
+    <p>Made with 💚 by Eng. Ahmed</p>
+    </div>
+</footer>
+
+<!-- Filtering Script -->
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const subjectFilter = document.getElementById("subjectFilter");
+        const gradeFilter = document.getElementById("gradeFilter");
+        const fileCards = document.querySelectorAll(".file-card");
+
+        function filterFiles() {
+        const searchText = searchInput.value.toLowerCase();
+        const subject = subjectFilter.value;
+        const grade = gradeFilter.value;
+
+        fileCards.forEach(card => {
+            const name = card.textContent.toLowerCase();
+            const matchesSubject = !subject || card.classList.contains(subject);
+            const matchesGrade = !grade || card.classList.contains(grade);
+            const matchesSearch = name.includes(searchText);
+
+            card.style.display = (matchesSubject && matchesGrade && matchesSearch) ? "" : "none";
+        });
+        }
+
+        searchInput.addEventListener("input", filterFiles);
+        subjectFilter.addEventListener("change", filterFiles);
+        gradeFilter.addEventListener("change", filterFiles);
+    </script>
+
+    <script>
+    const toggle = document.getElementById('themeToggle');
+    const label = document.getElementById('themeLabel');
+    const prefersDark = localStorage.getItem('theme') === 'dark';
+
+    if (prefersDark) {
+        document.body.classList.add('dark-mode');
+        toggle.checked = true;
+        label.textContent = 'Dark';
+    }
+
+    toggle.addEventListener('change', function () {
+        if (this.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        label.textContent = 'Dark';
+        } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        label.textContent = 'Light';
+        }
+    });
+    </script>
+</body>
+</html>
